@@ -16,6 +16,7 @@ function setCardType(type) {
         mastercard: ['#DF6F29', '#C69347'],
         amex: ['#EEE3E3', '#006DE0'],
         diners: ['#436D99', '#2D57F2'],
+        maestro: ['#3A9BD9', '#CC2131'],
         default: ['black', 'gray']
     }
 
@@ -72,13 +73,18 @@ const cardNumberPattern = {
         },
         {
             mask: '0000 0000 0000 0000',
-            regex: /^9\d{0,15}/,
+            regex: /^3[47]\d{0,13}/,
             cardtype: 'amex'
         },
         {
             mask: '0000 0000 0000 0000',
-            regex: /^8\d{0,15}/,
+            regex: /^3(?:0([0-5]|9)|[689]\d?)\d{0,11}/,
             cardtype: 'diners'
+        },
+        {
+            mask: '0000 0000 0000 0000',
+            regex: /^(?:5[0678]\d{0,2}|6304|67\d{0,2})\d{0,12}/,
+            cardtype: 'maestro'
         },
         {
             mask: '0000 0000 0000 0000',
